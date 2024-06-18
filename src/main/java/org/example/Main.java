@@ -1,14 +1,22 @@
 package org.example;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Request request = new Request("example.com");
-        request.get("/");
+        Http http = new Http("example.com");
+//        http.get("/");
+
+        try {
+            Server server = new Server();
+            Thread serverThread = new Thread(server);
+            serverThread.start();
+
+
+            Client client = new Client();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        InetAddress domains[] = InetAddress.getAllByName("www.youtube.com");
 //        URL url = new URL("https://www.geeksforgeeks.org");
 //        System.out.println(url);
